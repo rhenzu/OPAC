@@ -11,6 +11,7 @@ app.use(cors({
   credentials: true
 }));
 
+
 // Add error handling middleware
 app.use((err, req, res, next) => {
   console.error('Express error caught:', err);
