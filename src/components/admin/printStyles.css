@@ -1,0 +1,157 @@
+@media print {
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Show only the print container and its children */
+  #print-container, #print-container *,
+  #id-card-preview, #id-card-preview *,
+  #multiple-id-preview, #multiple-id-preview * {
+    visibility: visible;
+  }
+  
+  /* Position the print container */
+  #print-container,
+  #id-card-preview,
+  #multiple-id-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+  }
+  
+  /* Hide elements with no-print class */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #000 !important;
+  }
+  
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 4px;
+    text-align: center;
+  }
+  
+  /* Header styling */
+  .print-header {
+    margin-bottom: 20px;
+  }
+  
+  .print-header h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .filter-info {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Ensure proper page breaks */
+  tr {
+    page-break-inside: avoid;
+  }
+  
+  /* Add page numbers */
+  @page {
+    margin: 1cm;
+    size: A4 portrait;
+  }
+  
+  @page :first {
+    margin-top: 1cm;
+  }
+
+  /* ID Card specific styles */
+  .MuiCard-root {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  /* Override MUI styles that might interfere with printing */
+  .MuiDialog-container, 
+  .MuiDialog-paper, 
+  .MuiDialogContent-root {
+    overflow: visible !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* ID card layout styles */
+  #id-card-preview, #multiple-id-preview {
+    padding: 0 !important;
+  }
+
+  /* Fix ID card size exactly */
+  #multiple-id-preview .MuiCard-root,
+  #id-card-preview .MuiCard-root {
+    width: 8.5cm !important;
+    height: 5.4cm !important;
+    padding: 0.5cm !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Fix the barcode display */
+  svg.barcode {
+    width: 100% !important;
+    height: 15px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* Properly align the text fields */
+  .MuiTypography-root {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+
+  /* Maintain horizontal layout for ID card pairs */
+  #multiple-id-preview .MuiBox-root > .MuiBox-root > .MuiBox-root {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5cm !important;
+    justify-content: center !important;
+    margin-bottom: 1cm !important;
+  }
+
+  /* Same for single preview */
+  #id-card-preview .MuiBox-root > .MuiBox-root {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5cm !important;
+    justify-content: center !important;
+  }
+  
+  /* Set a page break between each student */
+  #multiple-id-preview > .MuiBox-root {
+    page-break-after: always;
+  }
+  
+  /* Last student doesn't need page break */
+  #multiple-id-preview > .MuiBox-root:last-child {
+    page-break-after: auto;
+  }
+}
+
+/* Styles to help with print preview */
+.print-preview .print-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+} 
